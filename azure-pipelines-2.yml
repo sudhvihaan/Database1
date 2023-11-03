@@ -35,7 +35,7 @@ steps:
     SqlUsername: admin123
     SqlPassword: 'asda123$'
     #DacpacFile: '$(System.DefaultWorkingDirectory)/publishingtheartifact/drop/Database1.dacpac'
-    DacpacFile: '$(System.DefaultWorkingDirectory)/$(Build.ArtifactStagingDirectory)/Database1.dacpac'
+    DacpacFile: '$(System.DefaultWorkingDirectory)/a/Database1.dacpac'
 
 
 
