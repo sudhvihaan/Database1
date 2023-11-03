@@ -1,0 +1,38 @@
+trigger:
+- master
+
+pool:
+  name: Self-Hosted-Laptop
+  demands: msbuild
+
+resources:
+  repositories:
+  - repository: yourGitHubRepo  # The name for this repository resource
+    type: github
+    endpoint: GitHub connection 1  # The name of your GitHub service connection in Azure DevOps
+    name: sudhvihaan/Database1  # The GitHub repository name
+    ref: master  # The branch you want to build
+
+steps:
+- task: MSBuild@1
+  displayName: 'Build solution Database1.sln'
+  inputs:
+    solution: Database1.sln
+    msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  name: publishingtheartifact 
+  displayName: 'Publish Artifact: drop'
+
+
+
+- task: SqlAzureDacpacDeployment@1
+  name: DeployingToDatabase
+  displayName: 'Azure SQL DacpacTask'
+  inputs:
+    azureSubscription: 'ServiceConnection-to-Kaushik'
+    ServerName: 'sqlserver-db-name1.database.windows.net'
+    DatabaseName: ivarusltd
+    SqlUsername: admin123
+    SqlPassword: 'asda123$'
+    DacpacFile: '$(System.DefaultWorkingDirectory)/publishingtheartifact/drop/Database1.dacpac'
