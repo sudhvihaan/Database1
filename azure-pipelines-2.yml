@@ -23,10 +23,14 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
 
-- powershell: |
-    # List the contents of the artifact folder
-    dir $(Build.ArtifactStagingDirectory)
-  displayName: 'List Artifact Contents'
+- powershell: 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+       Write-Host "$BASE_URL"
+       displayName: 'List Artifact Contents'
 
 
 #- powershell: |
