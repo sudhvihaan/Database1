@@ -22,3 +22,18 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
+
+
+
+
+
+steps:
+- task: SqlAzureDacpacDeployment@1
+  displayName: 'Azure SQL DacpacTask'
+  inputs:
+    azureSubscription: 'ServiceConnection-to-Kaushik'
+    ServerName: 'sqlserver-db-name1.database.windows.net'
+    DatabaseName: ivarusltd
+    SqlUsername: admin123
+    SqlPassword: 'asda123$'
+    DacpacFile: '$(System.DefaultWorkingDirectory)/_Database-install-CICD/drop/Database1.dacpac'
