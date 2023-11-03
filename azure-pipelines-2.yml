@@ -21,7 +21,6 @@ steps:
     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
-  name: publishingtheartifact 
   displayName: 'Publish Artifact: drop'
 
 
@@ -35,4 +34,6 @@ steps:
     DatabaseName: ivarusltd
     SqlUsername: admin123
     SqlPassword: 'asda123$'
-    DacpacFile: '$(System.DefaultWorkingDirectory)/publishingtheartifact/drop/Database1.dacpac'
+    #DacpacFile: '$(System.DefaultWorkingDirectory)/publishingtheartifact/drop/Database1.dacpac'
+    DacpacFile: 'Database1.dacpac'
+
