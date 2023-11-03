@@ -24,9 +24,6 @@ steps:
   displayName: 'Publish Artifact: drop'
 
 
-
-
-
 steps:
 - task: SqlAzureDacpacDeployment@1
   
