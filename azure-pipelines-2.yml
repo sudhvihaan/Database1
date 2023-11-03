@@ -28,6 +28,14 @@ steps:
     dir $(Build.ArtifactStagingDirectory)
   displayName: 'List Artifact Contents'
 
+- powershell: |
+    # Enable Query Store for the database
+    $connectionString = "Server=tcp:sqlserver-db-name1.database.windows.net,1433;Initial Catalog=ivarusltd;Persist Security Info=False;User ID=admin123;Password={asda123$};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    
+    $databaseName = "ivarusltd"
+    Invoke-SqlCmd -ConnectionString $connectionString -Query "ALTER DATABASE [$databaseName] SET QUERY_STORE = ON"
+  displayName: 'Enable Query Store'
+
 
 - task: SqlAzureDacpacDeployment@1
   name: DeployingToDatabase
