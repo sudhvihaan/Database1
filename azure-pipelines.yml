@@ -21,19 +21,15 @@ steps:
     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
+  name: publishingtheartifact 
   displayName: 'Publish Artifact: drop'
 
 
-- jobs
-name: 
-steps:
-- task: SqlAzureDacpacDeployment@1
-  
-  displayName: 'Azure SQL DacpacTask'
+
+ 
+- task: SqlDacpacDeploymentOnMachineGroup@0
   inputs:
-    azureSubscription: 'ServiceConnection-to-Kaushik'
-    ServerName: 'sqlserver-db-name1.database.windows.net'
-    DatabaseName: ivarusltd
-    SqlUsername: admin123
-    SqlPassword: 'asda123$'
+    TaskType: 'dacpac'
     DacpacFile: '$(System.DefaultWorkingDirectory)/_Database-install-CICD/drop/Database1.dacpac'
+    TargetMethod: 'connectionString'
+    ConnectionString: 'Server=tcp:sqlserver-db-name1.database.windows.net,1433;Initial Catalog=ivarusltd;Persist Security Info=False;User ID=admin123;Password={asda123$};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
