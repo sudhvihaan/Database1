@@ -10,7 +10,7 @@ resources:
   - repository: yourGitHubRepo  # The name for this repository resource
     type: github
     endpoint: GitHub connection 1  # The name of your GitHub service connection in Azure DevOps
-    name: sudhvihaan/Database1  # The GitHub repository name
+    name: sudhvihaan/Database11231  # The GitHub repository name
     ref: master  # The branch you want to build
 
 steps:
